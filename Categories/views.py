@@ -4,7 +4,7 @@ from . import forms
 def add_category(request):
     
     if request.method == 'POST':
-       category_form = forms.CategoryForm(request.POST)
+       category_form = forms.categoryForm(request.POST)
        
        if category_form.is_valid():
            category_form.save()
