@@ -1,11 +1,11 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% comment %} {% block title %}Profile{% endblock %} {% endcomment %}
 {% block content %}
 <form action="" style='width: 50%; margin : auto' method="POST">
     <h1> Add Profile page </h1>
     {% csrf_token %}
-    
+
     {{form | crispy }}
 
     <button class='btn btn-warning'>Submit</button>
