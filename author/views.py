@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from . import forms 
 
-from django.contrib import messages 
+
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages 
 
 # def add_author(request):
 #     if request.method == 'POST':
@@ -16,16 +17,16 @@ from django.contrib.auth.forms import AuthenticationForm
         
 #     return render(request, 'add_author.html', {'form' : author_form})
 
-def add_author(request):
+def register(request):
     if request.method == 'POST':
         register_form = forms.RegistrationForm(request.POST)
         if register_form.is_valid():
             register_form.save()
             messages.success(request, 'Account Create Successfully')
-            return redirect('login')
+            return redirect('register')
     else:
         register_form = forms.RegistrationForm()
-    return render(request, 'add_author.html', {'form' : register_form, 'type' : 'Register'})
+    return render(request, 'register.html', {'form' : register_form})
 
 
 def user_login(request):
@@ -37,12 +38,12 @@ def user_login(request):
             user = authenticate(username=user_name, password= user_pass)
             
             if user is not None:
-                messages.success(request, 'Logged in Sucessfully')
+                messages.success(request, 'Login in Successfully')
                 login(request, user)
                 return redirect('homepage')
             else:
                 messages.warning(request, "Login information incorrect")
-                return redirect('add_author')
+                return redirect('register')
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form' : form })
