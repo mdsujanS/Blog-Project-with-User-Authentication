@@ -29,9 +29,6 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>
               </li>
 
-              {% comment %} <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_author' %}">Add Author</a>
-              </li> {% endcomment %}
 
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
@@ -39,31 +36,24 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
               </li>
-              {% comment %} <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li> {% endcomment %}
             </ul>
 
-            {% comment %} <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form> {% endcomment %}
-
             <div class='flex'>
-              <button class='btn btn-warning'><a href="{% url 'add_author' %}">Register>
+              <button class='btn btn-warning mx-2'><a href="{% url 'register' %}">Register>
               <button class='btn btn-warning' style='text: white; '><a href="{% url 'login' %}">login</a></button>
             </div>
           
           </div>
         </div>
       </nav>
+      {% if messages %}
+
+      <ul class="messages">
+        {% for message in messages %}
+          <h3 {% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h3>
+        {% endfor %}
+      </ul>
+      {% endif %}
 
       {% block content %}
       
