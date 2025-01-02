@@ -1,7 +1,5 @@
 from django.db import models
 from Categories.models import Category
-from author.models import Author 
-
 from django.contrib.auth.models import User 
 
 class Post(models.Model):
